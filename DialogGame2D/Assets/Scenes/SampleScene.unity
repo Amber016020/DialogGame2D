@@ -180,6 +180,9 @@ MonoBehaviour:
   faceImage: {fileID: 732742981}
   textFile: {fileID: 4900000, guid: 156d56bdc14e9524d9b2bac6228a3429, type: 3}
   index: 0
+  textSpeed: 0.1
+  face01: {fileID: 21300000, guid: 7786beb7e870a154bad0b47ed4387b37, type: 3}
+  face02: {fileID: 21300000, guid: 6eb32fc4d881d254589ee8943a653e14, type: 3}
 --- !u!114 &160266736
 MonoBehaviour:
   m_ObjectHideFlags: 0
