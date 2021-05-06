@@ -18,6 +18,7 @@ public class DialogSystem : MonoBehaviour
     public Sprite face01, face02;
 
     bool textFinished;
+    bool cancelTyping;
 
     List<string> textList = new List<string>();
 
@@ -42,11 +43,22 @@ public class DialogSystem : MonoBehaviour
             index = 0;
             return;
         }
-        if (Input.GetKeyDown(KeyCode.R) && textFinished)
+        //if (Input.GetKeyDown(KeyCode.R) && textFinished)
+        //{
+        //    //textLabel.text = textList[index];
+        //    //index++;
+        //    StartCoroutine(SetTextUI());
+        //}
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            //textLabel.text = textList[index];
-            //index++;
-            StartCoroutine(SetTextUI());
+            if(textFinished && !cancelTyping)
+            {
+                StartCoroutine(SetTextUI());
+            }
+            else if (!textFinished)
+            {
+                cancelTyping = !cancelTyping;
+            }
         }
     }
 
@@ -60,8 +72,17 @@ public class DialogSystem : MonoBehaviour
         //}
         //textLabel.text = textList[index];
         //index++;
-        if(textFinished)
+
+        if (textFinished && !cancelTyping)
+        {
             StartCoroutine(SetTextUI());
+        }
+        else if (!textFinished)
+        {
+            cancelTyping = !cancelTyping;
+        }
+        //if (textFinished)
+        //    StartCoroutine(SetTextUI());
     }
 
     void GetTextFormFile(TextAsset file)
@@ -86,31 +107,25 @@ public class DialogSystem : MonoBehaviour
             faceImage.sprite = face01;
             index++;
         }
-        else if (textList[index].Contains("protagonist")){
-            faceImage.sprite = face01;
+        else if (textList[index].Contains("talkrole")){
+            faceImage.sprite = face02;
             index++;
         }
-        switch (textList[index])
+        int letter = 0;
+        while (!cancelTyping && letter < textList[index].Length -1 )
         {
-            case "protagonist":
-                print("¤@¼Ë");
-                faceImage.sprite = face01;
-                index++;
-                break;
-            case "talkrole":
-                faceImage.sprite = face01;
-                index++;
-                break;
-            case "Narrator":
-                index++;
-                break;
-        }
-
-        for(int i = 0; i < textList[index].Length; i++)
-        {
-            textLabel.text += textList[index][i];
+            textLabel.text += textList[index][letter];
+            letter++;
             yield return new WaitForSeconds(textSpeed);
         }
+
+        //for(int i = 0; i < textList[index].Length; i++)
+        //{
+        //    textLabel.text += textList[index][i];
+        //    yield return new WaitForSeconds(textSpeed);
+        //}
+        textLabel.text = textList[index];
+        cancelTyping = false;
         textFinished = true;
         index++;
     }
