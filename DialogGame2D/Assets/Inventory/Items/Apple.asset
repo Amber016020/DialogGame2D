@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad18c0791b3b75344bbcc954c4f966d9, type: 3}
-  m_Name: Book
+  m_Name: Apple
   m_EditorClassIdentifier: 
-  itemName: "\u66F8\u672C"
-  itemImage: {fileID: 21300000, guid: ae496f5dad56ea645b72d374a0376368, type: 3}
-  itemHeld: 5
-  itemInfo: "\u9019\u662F\u4E00\u672C\u66F8\u3002"
+  itemName: "\u860B\u679C"
+  itemImage: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
+  itemHeld: 2
+  itemInfo: "\u9019\u662F\u4E00\u9846\u860B\u679C\u3002"
   equp: 0
