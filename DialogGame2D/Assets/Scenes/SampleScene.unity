@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 275091575}
   - component: {fileID: 275091574}
   - component: {fileID: 275091576}
+  - component: {fileID: 275091577}
   m_Layer: 5
   m_Name: Bag
   m_TagString: Untagged
@@ -564,6 +565,19 @@ MonoBehaviour:
   emptySlot: {fileID: 4407690037069798960, guid: 689d3dc6bb6379441b9da4b148bf026b, type: 3}
   itemInfromation: {fileID: 1387411190}
   slots: []
+--- !u!114 &275091577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275091572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a555eae9601004a8685d923f841b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 416049624}
 --- !u!1 &416049621
 GameObject:
   m_ObjectHideFlags: 0
