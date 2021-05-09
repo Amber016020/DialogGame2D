@@ -9,8 +9,11 @@ public class InventoryManager : MonoBehaviour
 
     public Inventory myBag;
     public GameObject slotGrid;
-    public Slot slotPrefab;
+    //public Slot slotPrefab;
+    public GameObject emptySlot;
     public Text itemInfromation;
+
+    public List<GameObject> slots = new List<GameObject>();
 
     void Awake()
     {
@@ -29,7 +32,7 @@ public class InventoryManager : MonoBehaviour
     {
         instance.itemInfromation.text = itemDescription;
     }
-
+    /*
     public static void CreateNewItem(Item item)
     {
         print("�إ߷sitem");
@@ -40,7 +43,7 @@ public class InventoryManager : MonoBehaviour
         newItem.slotImage.sprite = item.itemImage;
         newItem.slotNum.text = item.itemHeld.ToString();
     }
-
+    */
     public static void RefreshItem()
     {
         for(int i = 0; i < instance.slotGrid.transform.childCount; i++)
@@ -48,10 +51,14 @@ public class InventoryManager : MonoBehaviour
             if (instance.slotGrid.transform.childCount == 0)
                 break;
             Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
+            instance.slots.Clear();
         }
         for(int i = 0; i < instance.myBag.itemList.Count; i++)
         {
-            CreateNewItem(instance.myBag.itemList[i]);
+            //CreateNewItem(instance.myBag.itemList[i]);
+            instance.slots.Add(Instantiate(instance.emptySlot));
+            instance.slots[i].transform.SetParent(instance.slotGrid.transform);
+            instance.slots[i].GetComponent<Slot>().SetupSlot(instance.myBag.itemList[i]);
         }
     }
 }
