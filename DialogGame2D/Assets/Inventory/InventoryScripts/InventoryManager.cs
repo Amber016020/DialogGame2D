@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject emptySlot;
     public Text itemInfromation;
 
-    public List<GameObject> slots = new List<GameObject>();
+    public List<GameObject> slots = new List<GameObject>();     //管理生成的18個slots
 
     void Awake()
     {
@@ -46,6 +46,7 @@ public class InventoryManager : MonoBehaviour
     */
     public static void RefreshItem()
     {
+        //循環刪除slotGrid下的子集合物件
         for(int i = 0; i < instance.slotGrid.transform.childCount; i++)
         {
             if (instance.slotGrid.transform.childCount == 0)
@@ -53,11 +54,14 @@ public class InventoryManager : MonoBehaviour
             Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
             instance.slots.Clear();
         }
+
+        //重新生成對應myBag裡面的物品的slot
         for(int i = 0; i < instance.myBag.itemList.Count; i++)
         {
             //CreateNewItem(instance.myBag.itemList[i]);
             instance.slots.Add(Instantiate(instance.emptySlot));
             instance.slots[i].transform.SetParent(instance.slotGrid.transform);
+            instance.slots[i].GetComponent<Slot>().slotID = i;
             instance.slots[i].GetComponent<Slot>().SetupSlot(instance.myBag.itemList[i]);
         }
     }
