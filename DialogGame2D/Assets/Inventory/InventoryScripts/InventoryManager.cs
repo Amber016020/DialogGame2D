@@ -12,6 +12,8 @@ public class InventoryManager : MonoBehaviour
     //public Slot slotPrefab;
     public GameObject emptySlot;
     public Text itemInfromation;
+    public Image itemImage;
+    public GameObject des;
 
     public List<GameObject> slots = new List<GameObject>();     //管理生成的18個slots
 
@@ -28,9 +30,11 @@ public class InventoryManager : MonoBehaviour
         instance.itemInfromation.text = "";
     }
 
-    public static void UpdateItemInfo(string itemDescription)
+    public static void UpdateItemInfo(string itemDescription, Sprite image)
     {
+        instance.des.SetActive(true);
         instance.itemInfromation.text = itemDescription;
+        instance.itemImage.sprite = image;
     }
     /*
     public static void CreateNewItem(Item item)

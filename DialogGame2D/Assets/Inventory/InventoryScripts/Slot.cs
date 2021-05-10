@@ -10,12 +10,11 @@ public class Slot : MonoBehaviour
     public Image slotImage;
     public Text slotNum;
     public string slotInfo;
-
     public GameObject itemSlot;
 
     public void ItemOnClicked()
     {
-        InventoryManager.UpdateItemInfo(slotInfo);
+        InventoryManager.UpdateItemInfo(slotInfo, slotImage.sprite);
     }
 
     public void SetupSlot(Item item)
