@@ -17,16 +17,35 @@ public class DialogSystem : MonoBehaviour
     [Header("頭像")]
     public Sprite face01, face02;
 
+    [Header("話題選項")]
+    public Text TextChoice;
+    public Text T1;
+    public Text T2;
+    public Text T3;
+    public Text T4;
+
+    [Header("對話框")]
+    public GameObject dialog;
+
+    [Header("話題")]
+    public GameObject dialogChoice;
+
     bool textFinished;
     bool cancelTyping;
+    string chh = "";
 
     List<string> textList = new List<string>();
 
-    // Start is called before the first frame update
     void Awake()
     {
         GetTextFormFile(textFile);
     }
+
+    public void Choice(string ch)
+    {
+        chh = ch;
+    }
+
     private void OnEnable()
     {
         //textLabel.text = textList[index];
@@ -100,17 +119,52 @@ public class DialogSystem : MonoBehaviour
 
     IEnumerator SetTextUI()
     {
+        //選項的邏輯
         textFinished = false;
         textLabel.text = "";
         print(textList[index]);
-        if (textList[index].Contains("protagonist")){
+        if(chh != null)
+        {
+            if (textList[index] != chh)
+            {
+                index++;
+            }
+        }
+        if (textList[index].Contains("protagonist"))
+        {
+            faceImage.color = new Color(255, 255, 255, 255);
             faceImage.sprite = face01;
             index++;
         }
         else if (textList[index].Contains("talkrole")){
+            faceImage.color = new Color(255, 255, 255, 255);
             faceImage.sprite = face02;
             index++;
         }
+        else if (textList[index].Contains("Narrator"))
+        {
+            faceImage.color = new Color(255, 255, 255, 0);
+            index++;
+        }
+        else if (textList[index].Contains("Choice"))
+        {
+            dialogChoice.SetActive(true);
+            dialog.SetActive(false);
+            index++;
+            TextChoice.text = textList[index];
+        }
+        else if (textList[index].Contains("T1"))
+        {
+            index++;
+            TextChoice.text = textList[index];
+        }
+        else if (textList[index].Contains("T2"))
+        {
+            index++;
+            TextChoice.text = textList[index];
+        }
+
+
         int letter = 0;
         while (!cancelTyping && letter < textList[index].Length -1 )
         {
